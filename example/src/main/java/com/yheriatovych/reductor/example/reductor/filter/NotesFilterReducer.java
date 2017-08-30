@@ -11,9 +11,7 @@ public abstract class NotesFilterReducer implements Reducer<NotesFilter> {
     NotesFilter initialState() {
         return NotesFilter.ALL;
     }
-
-    @Action(value = FilterActions.SET_FILTER,
-            from = FilterActions.class)
+    @Action(value = FilterActions.SET_FILTER,from = FilterActions.class)
     NotesFilter setFilter(NotesFilter state, NotesFilter value) {
         return value;
     }

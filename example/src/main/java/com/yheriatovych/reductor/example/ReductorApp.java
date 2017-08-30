@@ -3,11 +3,13 @@ package com.yheriatovych.reductor.example;
 import android.app.Application;
 import android.os.Handler;
 import android.util.Log;
+
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.inspector.console.RuntimeReplFactory;
 import com.facebook.stetho.rhino.JsRuntimeReplFactoryBuilder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mrwu.redux.login.LoginReducer;
 import com.yheriatovych.reductor.Store;
 import com.yheriatovych.reductor.example.model.AppState;
 import com.yheriatovych.reductor.example.model.AppStateReducer;
@@ -15,6 +17,7 @@ import com.yheriatovych.reductor.example.reductor.filter.NotesFilterReducer;
 import com.yheriatovych.reductor.example.reductor.notelist.NotesListReducer;
 import com.yheriatovych.reductor.example.reductor.utils.SetStateReducer;
 import com.yheriatovych.reductor.example.reductor.utils.UndoableReducer;
+
 import org.mozilla.javascript.BaseFunction;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
@@ -34,6 +37,7 @@ public class ReductorApp extends Application {
         final AppStateReducer vanillaReducer = AppStateReducer.builder()
                 .notesReducer(NotesListReducer.create())
                 .filterReducer(NotesFilterReducer.create())
+                .loginReducer(LoginReducer.create())
                 .build();
         store = Store.create(
                 new SetStateReducer<>(
@@ -44,6 +48,7 @@ public class ReductorApp extends Application {
                         .runtimeRepl(createRuntimeRepl())
                         .finish())
                 .build());
+
 
     }
 
